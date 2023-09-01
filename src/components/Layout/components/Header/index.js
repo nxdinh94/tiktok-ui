@@ -3,14 +3,40 @@ import { Wrapper as ProperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss'; //return an object
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle, faSpinner, faMagnifyingGlass, faSignIn } from '@fortawesome/free-solid-svg-icons';
+import {
+    faTimesCircle,
+    faSpinner,
+    faMagnifyingGlass,
+    faSignIn,
+    faEllipsisVertical,
+    faEarthAsia,
+    faCircleQuestion,
+    faKeyboard,
+} from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind'; //viet className duoi dang ab-cd
 import { useEffect, useState } from 'react';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import Menu from '~/components/Popper/Menu';
 
 const cx = classNames.bind(styles);
+const MENU_ITEM = [
+    {
+        icon: <FontAwesomeIcon icon= {faEarthAsia} />,
+        title: 'English',
+    },
+    {
+        icon: <FontAwesomeIcon icon= {faCircleQuestion} />,
+        title: 'Feedback and help',
+        to: '/feadback'
+    },
+    {
+        icon: <FontAwesomeIcon icon= {faKeyboard} />,
+        title: 'Keyboard shortcuts',
+    }
+]
+
 
 function Header() {
     // console.log('ss',images.logo);
@@ -28,15 +54,15 @@ function Header() {
                 </div>
                 <Tippy
                     interactive={true}
-                    visible={searchResults.length > 0}
+                    visible={false && searchResults.length > 0}
                     render={(attrs) => (
-                        <div className={cx("search-result")} tabIndex="-1" {...attrs}>
+                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <ProperWrapper>
                                 <h4 className={cx('search-title')}>Account</h4>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
                             </ProperWrapper>
                         </div>
                     )}
@@ -55,7 +81,15 @@ function Header() {
                 </Tippy>
                 <div className={cx('action')}>
                     <Button text>Upload</Button>
-                    <Button primary leftIcon = {<FontAwesomeIcon icon={faSignIn} />}>Login</Button>
+                    <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
+                        Login
+                    </Button>
+
+                    <Menu items = {MENU_ITEM}>
+                        <button className={cx('more-btn')}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>
