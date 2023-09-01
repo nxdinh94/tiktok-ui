@@ -25,6 +25,21 @@ const MENU_ITEM = [
     {
         icon: <FontAwesomeIcon icon= {faEarthAsia} />,
         title: 'English',
+        children: {
+            title: 'Languages',
+            data: [
+                {   
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {   
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Vietnamese',
+                }
+            ]
+        }
     },
     {
         icon: <FontAwesomeIcon icon= {faCircleQuestion} />,
@@ -37,6 +52,14 @@ const MENU_ITEM = [
     }
 ]
 
+const handleMenuChange = (menuItem) => {
+    switch(menuItem.type){
+        case 'language':
+            //
+            break;
+        default:
+    }
+}
 
 function Header() {
     // console.log('ss',images.logo);
@@ -85,7 +108,7 @@ function Header() {
                         Login
                     </Button>
 
-                    <Menu items = {MENU_ITEM}>
+                    <Menu items = {MENU_ITEM} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
