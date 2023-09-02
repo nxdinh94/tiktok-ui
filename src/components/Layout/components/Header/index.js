@@ -12,8 +12,6 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
-    faCloudUpload,
-    
     faCoins,
     faGear,
     faSignOut,
@@ -26,9 +24,12 @@ import 'tippy.js/dist/tippy.css';
 
 import classNames from 'classnames/bind'; //viet className duoi dang ab-cd
 import { useEffect, useState } from 'react';
+
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { NotificationIcon, UploadIcon, MessageIcon } from '~/components/icon';
+import Image from '~/components/Images';
 
 const cx = classNames.bind(styles);
 const MENU_ITEM = [
@@ -143,7 +144,17 @@ function Header() {
                         <>
                             <Tippy delay={[50, 100]} content="Upload Video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[50, 100]} content="Your Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[50, 100]} content="Notifications" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <NotificationIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -157,9 +168,9 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEM} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
-                                className={cx('user-avatar')}
+                            <Image
                                 alt="nguyen a"
+                                className={cx('user-avatar')}
                                 src="https://cdnimg.vietnamplus.vn/uploaded/mzdic/2023_03_24/cristiano_ronaldo_portugal_2403.jpg"
                             />
                         ) : (
