@@ -6,6 +6,7 @@ import classNames from 'classnames/bind';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/icon';
+import * as searchService from '~/apiServices/searchServices';
 import styles from './Search.module.scss';
 import { useDebounce } from '~/hooks';
 
@@ -26,18 +27,17 @@ function Search() {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
 
+        const fetchApi = async () => {
+            setLoading(true);
+
+            const result = await searchService.search(debounced);
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+        fetchApi();
         //encodeURIComponent(); encode some special characters that not permit in URLs
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
     }, [debounced]);
 
     const handleClear = () => {

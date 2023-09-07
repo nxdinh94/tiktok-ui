@@ -8,7 +8,7 @@ const Image = forwardRef(({src, alt,...props}, ref) => {
         setFallback(images.altImage);
     }
     return ( 
-        <img ref={ref} {...props } alt src={fallback || src} onError={handleError}/>
+        <img ref={ref} {...props } alt = {alt} src={fallback || src} onError={handleError}/>
     );
 })
 
