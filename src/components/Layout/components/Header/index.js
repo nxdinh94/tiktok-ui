@@ -10,7 +10,7 @@ import {
     faKeyboard,
     faSignIn,
     faSignOut,
-    faUser
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -19,8 +19,10 @@ import 'tippy.js/dist/tippy.css';
 
 import classNames from 'classnames/bind'; //viet className duoi dang ab-cd
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import Search from '../Search'
+import routeConfig from '~/config/routes';
+import Search from '../Search';
 import Button from '~/components/Button';
 import Image from '~/components/Images';
 import Menu from '~/components/Popper/Menu';
@@ -102,11 +104,11 @@ function Header() {
         }, 3000);
     });
     return (
-        <header className={cx(styles.wrapper)}>
-            <div className={cx(styles.inner)}>
-                <div className={cx(styles.logo)}>
+        <header className={cx('wrapper')}>
+            <div className={cx('inner')}>
+                <Link to={routeConfig.home} className={cx('logo')}>
                     <img src={images.logo} alt="tiktok" />
-                </div>
+                </Link>
                 <Search />
                 <div className={cx('actions')}>
                     {currentUser ? (
